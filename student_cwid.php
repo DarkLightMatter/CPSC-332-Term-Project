@@ -11,8 +11,8 @@
                 die('Could not connect: ' . mysqli_connect_error());
             }
 
-            // Construct and execute the SQL query with a WHERE clause
-            $query = "SELECT cnum, snum, grade FROM Enrollment WHERE cwid = '$userInput'";
+            // Construct and execute the SQL query
+            $query = "SELECT Course.cnum, title, grade FROM Enrollment, Course WHERE cwid = '$userInput' AND Course.cnum = Enrollment.cnum";
             $result = $link->query($query);
 
             // Display results
@@ -21,9 +21,9 @@
 
                 for ($i = 0; $i < $nor; $i++) {
                     $row = $result->fetch_assoc();
-                    echo "cnum: ", $row["cnum"], "<br>";
-                    echo "snum: ", $row["snum"], "<br>";
-                    echo "grade: ", $row["grade"], "<br>";
+                    echo "Course Number: ", $row["cnum"], "<br>";
+                    echo "Title: ", $row["title"], "<br>";
+                    echo "Grade: ", $row["grade"], "<br><br>";
                 }
 
                 $result->free_result();
