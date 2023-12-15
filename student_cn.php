@@ -18,23 +18,24 @@
                       GROUP BY snum;";
             $result = $link->query($query);
 
-            // Display results
+           // Display results
             if ($result) {
                 $nor = $result->num_rows;
-
-                for ($i = 0; $i < $nor; $i++) {
-                    $row = $result->fetch_assoc();
-                    echo "Section Number: ", $row["snum"], "<br>";
-                    echo "Classroom: ", $row["classroom"], "<br>";
-                    echo "Meeting Days: ", $row["meeting_days"], "<br>";
-                    echo "Beginning Time: ", $row["beginning_time"], "<br>";
-                    echo "Ending Time: ", $row["ending_time"], "<br>";
-                    echo "Number of Students Enrolled: ", $row["Num_of_students_enrolled"], "<br><br>";
+                if($nor > 0) {
+                    for ($i = 0; $i < $nor; $i++) {
+                        $row = $result->fetch_assoc();
+                        echo "Section Number: ", $row["snum"], "<br>";
+                        echo "Classroom: ", $row["classroom"], "<br>";
+                        echo "Meeting Days: ", $row["meeting_days"], "<br>";
+                        echo "Beginning Time: ", $row["beginning_time"], "<br>";
+                        echo "Ending Time: ", $row["ending_time"], "<br>";
+                        echo "Number of Students Enrolled: ", $row["Num_of_students_enrolled"], "<br><br>";
+                    }
+                } else {
+                    echo "No results found";
                 }
 
                 $result->free_result();
-            } else {
-                echo "Error executing query: " . $link->error;
             }
 
             // Close the database connection
