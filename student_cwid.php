@@ -20,17 +20,19 @@
             // Display results
             if ($result) {
                 $nor = $result->num_rows;
-
-                for ($i = 0; $i < $nor; $i++) {
-                    $row = $result->fetch_assoc();
-                    echo "Course Number: ", $row["cnum"], "<br>";
-                    echo "Title: ", $row["title"], "<br>";
-                    echo "Grade: ", $row["grade"], "<br><br>";
+            
+                if($nor > 0) {
+                    for ($i = 0; $i < $nor; $i++) {
+                        $row = $result->fetch_assoc();
+                        echo "Course Number: ", $row["cnum"], "<br>";
+                        echo "Title: ", $row["title"], "<br>";
+                        echo "Grade: ", $row["grade"], "<br><br>";
+                    } 
+                } else {
+                    echo "No results found";
                 }
 
                 $result->free_result();
-            } else {
-                echo "Error executing query: " . $link->error;
             }
 
             // Close the database connection
