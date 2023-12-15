@@ -12,7 +12,9 @@
             }
 
             // Construct and execute the SQL query
-            $query = "SELECT Course.cnum, title, grade FROM Enrollment, Course WHERE cwid = '$userInput' AND Course.cnum = Enrollment.cnum";
+            $query = "SELECT Course.cnum, title, grade 
+                      FROM Enrollment, Course 
+                      WHERE cwid = '$userInput' AND Course.cnum = Enrollment.cnum";
             $result = $link->query($query);
 
             // Display results

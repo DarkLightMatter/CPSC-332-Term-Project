@@ -12,7 +12,10 @@
             }
 
             // Construct and execute the SQL query 
-            $query = "SELECT Sections.snum, classroom, meeting_days, beginning_time, ending_time, COUNT(*) AS Num_of_students_enrolled FROM Sections, Enrollment WHERE Sections.snum = Enrollment.snum AND Sections.cnum = '$userInput' GROUP BY snum;";
+            $query = "SELECT Sections.snum, classroom, meeting_days, beginning_time, ending_time, COUNT(*) AS Num_of_students_enrolled 
+                      FROM Sections, Enrollment 
+                      WHERE Sections.snum = Enrollment.snum AND Sections.cnum = '$userInput' 
+                      GROUP BY snum;";
             $result = $link->query($query);
 
             // Display results
